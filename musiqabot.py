@@ -136,7 +136,7 @@ def download_insta(message):
     except: bot.edit_message_text("❌ Xatolik.", message.chat.id, status.message_id)
 
 # --- Webhook ---
-RENDER_URL = os.environ.get("RENDER_EXTERNAL_URL") # To'g'ri usul
+RENDER_URL = os.environ.get("https://nmusiqabot.onrender.com") # To'g'ri usul
 
 @app.route(f"/{BOT_TOKEN}", methods=["POST"])
 def receive_update():
