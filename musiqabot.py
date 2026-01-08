@@ -135,26 +135,13 @@ def download_insta(message):
         total_downloads += 1
     except: bot.edit_message_text("❌ Xatolik.", message.chat.id, status.message_id)
 
-# --- Webhook ---
-RENDER_URL = os.environ.get("https://nmusiqabot.onrender.com") # To'g'ri usul
-
-@app.route(f"/{BOT_TOKEN}", methods=["POST"])
-def receive_update():
-    if request.headers.get("content-type") == "application/json":
-        json_string = request.get_data().decode("utf-8")
-        update = telebot.types.Update.de_json(json_string)
-        bot.process_new_updates([update])
-        return ""
-    return "Forbidden", 403
-
-@app.route("/")
-def index(): return "Bot is running!"
-
 if __name__ == "__main__":
-    if not os.path.exists("downloads"): os.makedirs("downloads")
+    if not os.path.exists("downloads"): 
+        os.makedirs("downloads")
+    
+    # Webhookni o'chiramiz, chunki kompyuterda ishlatyapmiz
     bot.remove_webhook()
-    if RENDER_URL:
-        bot.set_webhook(url=f"{RENDER_URL}/{BOT_TOKEN}")
-        print(f"🚀 Webhook: {RENDER_URL}")
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    
+    print("🚀 Bot ishga tushdi (Polling)...")
+    # app.run o'rniga bot.infinity_polling() ishlating
+    bot.infinity_polling()
