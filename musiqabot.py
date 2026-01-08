@@ -14,7 +14,7 @@ CHANNEL_USERNAME = "@aclubnc"
 ADMIN_ID = 5767267885
 AD_TEXT = "📥 @NMusiqaBot orqali yuklab olindi"
 
-users = set()
+users = set()     
 total_downloads = 0
 search_cache = {}
 
